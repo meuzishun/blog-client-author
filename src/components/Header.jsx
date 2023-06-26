@@ -7,7 +7,7 @@ export default function Header() {
       <nav>
         <Link to='posts'>Posts</Link>
         <br />
-        <Link to='posts.new'>Create a new Post</Link>
+        <Link to='posts/new'>Create a new Post</Link>
       </nav>
     </header>
   );
