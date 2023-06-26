@@ -5,6 +5,8 @@ export default function Header() {
     <header>
       <h1>Title</h1>
       <nav>
+        <Link to='/'>Home</Link>
+        <br />
         <Link to='posts'>Posts</Link>
         <br />
         <Link to='posts/new'>Create a new Post</Link>
