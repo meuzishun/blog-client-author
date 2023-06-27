@@ -1,10 +1,13 @@
-import { useParams, Link } from 'react-router-dom';
+import { useLoaderData, Link } from 'react-router-dom';
 
 export default function PostDetails() {
-  const { postId } = useParams();
+  const post = useLoaderData();
+
   return (
     <div>
-      PostDetails for post {postId}
+      <h3>PostDetails for post {post.id}</h3>
+      <p>{post.title}</p>
+      <p>{post.body}</p>
       <br />
       <Link to='edit'>Edit</Link>
       <br />

@@ -20,16 +20,28 @@ import Comments from './pages/comments/Comments';
 import CommentDetails from './pages/comments/CommentDetails';
 import CommentEdit from './pages/comments/CommentEdit';
 
+// loaders
+import { postsLoader } from './loaders/postsLoader';
+import { postDetailsLoader } from './loaders/postDetailsLoader';
+
 export default function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route path='posts' element={<PostsLayout />}>
-          <Route index element={<Posts />} />
+          <Route index element={<Posts />} loader={postsLoader} />
           <Route path='new' element={<CreatePost />} />
-          <Route path=':postId' element={<PostDetails />} />
-          <Route path=':postId/edit' element={<PostEdit />} />
+          <Route
+            path=':postId'
+            element={<PostDetails />}
+            loader={postDetailsLoader}
+          />
+          <Route
+            path=':postId/edit'
+            element={<PostEdit />}
+            loader={postDetailsLoader}
+          />
           <Route path=':postId/comments' element={<CommentsLayout />}>
             <Route index element={<Comments />} />
             <Route path=':commentId' element={<CommentDetails />} />
