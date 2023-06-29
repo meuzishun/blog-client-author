@@ -1,3 +1,5 @@
+const apiRoot = import.meta.env.VITE_API_ROOT;
+import { createContext, useEffect, useState } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -12,6 +14,7 @@ import CommentsLayout from './layouts/CommentsLayout';
 
 // pages
 import Home from './pages/Home';
+import Login from './pages/Login';
 import Posts from './pages/posts/Posts';
 import CreatePost from './pages/posts/CreatePost';
 import PostDetails from './pages/posts/PostDetails';
@@ -23,15 +26,59 @@ import CommentEdit from './pages/comments/CommentEdit';
 // loaders
 import { postsLoader } from './loaders/postsLoader';
 import { postDetailsLoader } from './loaders/postDetailsLoader';
+import { commentsLoader } from './loaders/commentsLoader';
+import { commentDetailsLoader } from './loaders/commentDetailsLoader';
+
+// actions
+import { loginAction } from './actions/loginAction';
+import { newPostAction } from './actions/newPostAction';
+import { editPostAction } from './actions/editPostAction';
+
+export const UserContext = createContext(null);
 
 export default function App() {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const token = localStorage.getItem('token');
+
+      if (!token) {
+        setUser(null);
+        localStorage.clear();
+        return;
+      }
+
+      const response = await fetch(apiRoot + '/profile', {
+        method: 'GET',
+        headers: {
+          Authorization: token,
+        },
+      });
+
+      const data = await response.json();
+
+      if (!data.user) {
+        setUser(null);
+        localStorage.clear();
+        return;
+      }
+
+      const userString = JSON.stringify(data.user);
+      localStorage.setItem('user', userString);
+      setUser(data.user);
+    };
+
+    getUser();
+  }, []);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>
         <Route index element={<Home />} />
         <Route path='posts' element={<PostsLayout />}>
           <Route index element={<Posts />} loader={postsLoader} />
-          <Route path='new' element={<CreatePost />} />
+          <Route path='new' element={<CreatePost />} action={newPostAction} />
           <Route
             path=':postId'
             element={<PostDetails />}
@@ -41,16 +88,30 @@ export default function App() {
             path=':postId/edit'
             element={<PostEdit />}
             loader={postDetailsLoader}
+            action={editPostAction}
           />
           <Route path=':postId/comments' element={<CommentsLayout />}>
-            <Route index element={<Comments />} />
-            <Route path=':commentId' element={<CommentDetails />} />
-            <Route path=':commentId/edit' element={<CommentEdit />} />
+            <Route index element={<Comments />} loader={commentsLoader} />
+            <Route
+              path=':commentId'
+              element={<CommentDetails />}
+              loader={commentDetailsLoader}
+            />
+            <Route
+              path=':commentId/edit'
+              element={<CommentEdit />}
+              loader={commentDetailsLoader}
+            />
           </Route>
         </Route>
+        <Route path='login' element={<Login />} action={loginAction} />
       </Route>
     )
   );
 
-  return <RouterProvider router={router} />;
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      <RouterProvider router={router} />
+    </UserContext.Provider>
+  );
 }
