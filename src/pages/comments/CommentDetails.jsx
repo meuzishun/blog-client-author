@@ -12,6 +12,8 @@ export default function CommentDetails() {
       <p>{comment.content}</p>
       <br />
       <Link to='edit'>Edit</Link>
+      <br />
+      <Link to='delete'>Delete Post</Link>
     </div>
   );
 }
