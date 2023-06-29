@@ -22,7 +22,7 @@ import EditPost from './pages/posts/EditPost';
 import DeletePostCheck from './pages/posts/DeletePostCheck';
 import Comments from './pages/comments/Comments';
 import CommentDetails from './pages/comments/CommentDetails';
-import CommentEdit from './pages/comments/CommentEdit';
+import EditComment from './pages/comments/EditComment';
 
 // loaders
 import { postsLoader } from './loaders/postsLoader';
@@ -35,6 +35,7 @@ import { loginAction } from './actions/loginAction';
 import { newPostAction } from './actions/newPostAction';
 import { editPostAction } from './actions/editPostAction';
 import { deletePostAction } from './actions/deletePostAction';
+import { editCommentAction } from './actions/editCommentAction';
 
 export const UserContext = createContext(null);
 
@@ -107,8 +108,9 @@ export default function App() {
             />
             <Route
               path=':commentId/edit'
-              element={<CommentEdit />}
+              element={<EditComment />}
               loader={commentDetailsLoader}
+              action={editCommentAction}
             />
           </Route>
         </Route>
