@@ -18,7 +18,7 @@ import Login from './pages/Login';
 import Posts from './pages/posts/Posts';
 import CreatePost from './pages/posts/CreatePost';
 import PostDetails from './pages/posts/PostDetails';
-import PostEdit from './pages/posts/PostEdit';
+import EditPost from './pages/posts/EditPost';
 import DeletePostCheck from './pages/posts/DeletePostCheck';
 import Comments from './pages/comments/Comments';
 import CommentDetails from './pages/comments/CommentDetails';
@@ -88,7 +88,7 @@ export default function App() {
           />
           <Route
             path=':postId/edit'
-            element={<PostEdit />}
+            element={<EditPost />}
             loader={postDetailsLoader}
             action={editPostAction}
           />

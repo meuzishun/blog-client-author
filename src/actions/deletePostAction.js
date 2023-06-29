@@ -4,8 +4,7 @@ import { redirect } from 'react-router-dom';
 export const deletePostAction = async ({ params }) => {
   const { postId } = params;
 
-  // send post request
-  const response = await fetch(apiRoot + '/posts/' + postId, {
+  await fetch(apiRoot + '/posts/' + postId, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -13,8 +12,5 @@ export const deletePostAction = async ({ params }) => {
     },
   });
 
-  console.log(response);
-
-  // redirect the user
   return redirect('/posts');
 };

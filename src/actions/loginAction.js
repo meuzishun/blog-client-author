@@ -9,7 +9,6 @@ export const loginAction = async ({ request }) => {
     password: data.get('password'),
   };
 
-  // send post request
   const response = await fetch(apiRoot + '/login', {
     method: 'POST',
     headers: {
@@ -17,6 +16,7 @@ export const loginAction = async ({ request }) => {
     },
     body: JSON.stringify(submission),
   });
+
   const json = await response.json();
   const userString = JSON.stringify(json.user);
   localStorage.setItem('token', json.jwt.token);
@@ -28,6 +28,5 @@ export const loginAction = async ({ request }) => {
     };
   }
 
-  // redirect the user
   return redirect('/');
 };

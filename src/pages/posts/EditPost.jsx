@@ -1,6 +1,6 @@
 import { useLoaderData, useParams, Form, useNavigate } from 'react-router-dom';
 
-export default function PostEdit() {
+export default function EditPost() {
   const { post } = useLoaderData();
   const { postId } = useParams();
   const navigate = useNavigate();

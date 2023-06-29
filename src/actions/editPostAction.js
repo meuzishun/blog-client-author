@@ -4,8 +4,6 @@ import { redirect } from 'react-router-dom';
 export const editPostAction = async ({ request, params }) => {
   const data = await request.formData();
   const { postId } = params;
-  console.log(postId);
-  console.log(typeof postId);
 
   const submission = {
     title: data.get('title'),
@@ -13,10 +11,7 @@ export const editPostAction = async ({ request, params }) => {
     isPublished: data.get('publish') === 'on',
   };
 
-  console.log(submission);
-
-  // send post request
-  const response = await fetch(apiRoot + '/posts/' + postId, {
+  await fetch(apiRoot + '/posts/' + postId, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -25,8 +20,5 @@ export const editPostAction = async ({ request, params }) => {
     body: JSON.stringify(submission),
   });
 
-  console.log(response);
-
-  // redirect the user
   return redirect('/posts/' + postId);
 };

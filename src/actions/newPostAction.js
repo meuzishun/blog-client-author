@@ -10,8 +10,7 @@ export const newPostAction = async ({ request }) => {
     isPublished: data.get('publish') === 'on',
   };
 
-  // send post request
-  const response = await fetch(apiRoot + '/posts', {
+  await fetch(apiRoot + '/posts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -20,8 +19,5 @@ export const newPostAction = async ({ request }) => {
     body: JSON.stringify(submission),
   });
 
-  console.log(response);
-
-  // redirect the user
   return redirect('/posts');
 };
