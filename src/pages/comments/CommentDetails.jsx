@@ -2,7 +2,6 @@ import { useLoaderData, Link } from 'react-router-dom';
 
 export default function CommentDetails() {
   const { comment } = useLoaderData();
-  console.log(comment);
 
   return (
     <div>
