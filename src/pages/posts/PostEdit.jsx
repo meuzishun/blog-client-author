@@ -1,21 +1,9 @@
-// import { useState, useEffect } from 'react';
-import { useLoaderData, useParams, Form } from 'react-router-dom';
+import { useLoaderData, useParams, Form, useNavigate } from 'react-router-dom';
 
 export default function PostEdit() {
   const { post } = useLoaderData();
   const { postId } = useParams();
-  console.log(post);
-
-  // const [title, setTitle] = useState(null);
-  // const [content, setContent] = useState(null);
-
-  // useEffect(() => {
-  //   setTitle(post.title);
-  // }, [post]);
-
-  // useEffect(() => {
-  //   setContent(post.content);
-  // }, [post]);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -24,8 +12,6 @@ export default function PostEdit() {
         <div>
           <label>Title</label>
           <input
-            // defaultValue={title}
-            // onChange={(e) => setTitle(e.target.value)}
             defaultValue={post.title}
             name='title'
             id='title'
@@ -35,8 +21,6 @@ export default function PostEdit() {
         <div>
           <label>Content</label>
           <textarea
-            // defaultValue={content}
-            // onChange={(e) => setContent(e.target.value)}
             defaultValue={post.content}
             name='content'
             id='content'
@@ -53,7 +37,14 @@ export default function PostEdit() {
           />
         </div>
         <button type='submit'>Submit</button>
-        <button type='button'>Cancel</button>
+        <button
+          type='button'
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Cancel
+        </button>
       </Form>
     </div>
   );

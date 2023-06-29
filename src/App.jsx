@@ -19,6 +19,7 @@ import Posts from './pages/posts/Posts';
 import CreatePost from './pages/posts/CreatePost';
 import PostDetails from './pages/posts/PostDetails';
 import PostEdit from './pages/posts/PostEdit';
+import DeletePostCheck from './pages/posts/DeletePostCheck';
 import Comments from './pages/comments/Comments';
 import CommentDetails from './pages/comments/CommentDetails';
 import CommentEdit from './pages/comments/CommentEdit';
@@ -33,6 +34,7 @@ import { commentDetailsLoader } from './loaders/commentDetailsLoader';
 import { loginAction } from './actions/loginAction';
 import { newPostAction } from './actions/newPostAction';
 import { editPostAction } from './actions/editPostAction';
+import { deletePostAction } from './actions/deletePostAction';
 
 export const UserContext = createContext(null);
 
@@ -89,6 +91,12 @@ export default function App() {
             element={<PostEdit />}
             loader={postDetailsLoader}
             action={editPostAction}
+          />
+          <Route
+            path=':postId/delete'
+            element={<DeletePostCheck />}
+            loader={postDetailsLoader}
+            action={deletePostAction}
           />
           <Route path=':postId/comments' element={<CommentsLayout />}>
             <Route index element={<Comments />} loader={commentsLoader} />

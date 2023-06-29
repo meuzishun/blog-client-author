@@ -2,7 +2,6 @@ import { useLoaderData, Link } from 'react-router-dom';
 
 export default function PostDetails() {
   const { post } = useLoaderData();
-  console.log(post);
 
   return (
     <div>
@@ -10,9 +9,11 @@ export default function PostDetails() {
       <p>{post.title}</p>
       <p>{post.content}</p>
       <br />
-      <Link to='edit'>Edit</Link>
+      <Link to='edit'>Edit Post</Link>
       <br />
       <Link to='comments'>Comments</Link>
+      <br />
+      <Link to='delete'>Delete Post</Link>
     </div>
   );
 }

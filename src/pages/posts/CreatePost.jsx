@@ -1,6 +1,8 @@
-import { Form } from 'react-router-dom';
+import { Form, useNavigate } from 'react-router-dom';
 
 export default function CreatePost() {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h3>Create a new post</h3>
@@ -18,7 +20,14 @@ export default function CreatePost() {
           <input name='publish' id='publish' type='checkbox' />
         </div>
         <button type='submit'>Submit</button>
-        <button type='button'>Cancel</button>
+        <button
+          type='button'
+          onClick={() => {
+            navigate(-1);
+          }}
+        >
+          Cancel
+        </button>
       </Form>
     </div>
   );
