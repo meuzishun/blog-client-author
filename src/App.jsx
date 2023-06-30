@@ -21,8 +21,10 @@ import PostDetails from './pages/posts/PostDetails';
 import EditPost from './pages/posts/EditPost';
 import DeletePostCheck from './pages/posts/DeletePostCheck';
 import Comments from './pages/comments/Comments';
+import CreateComment from './pages/comments/CreateComment';
 import CommentDetails from './pages/comments/CommentDetails';
 import EditComment from './pages/comments/EditComment';
+import DeleteCommentCheck from './pages/comments/DeleteCommentCheck';
 
 // loaders
 import { postsLoader } from './loaders/postsLoader';
@@ -35,6 +37,7 @@ import { loginAction } from './actions/loginAction';
 import { newPostAction } from './actions/newPostAction';
 import { editPostAction } from './actions/editPostAction';
 import { deletePostAction } from './actions/deletePostAction';
+import { newCommentAction } from './actions/newCommentAction';
 import { editCommentAction } from './actions/editCommentAction';
 
 export const UserContext = createContext(null);
@@ -102,6 +105,11 @@ export default function App() {
           <Route path=':postId/comments' element={<CommentsLayout />}>
             <Route index element={<Comments />} loader={commentsLoader} />
             <Route
+              path='new'
+              element={<CreateComment />}
+              action={newCommentAction}
+            />
+            <Route
               path=':commentId'
               element={<CommentDetails />}
               loader={commentDetailsLoader}
@@ -111,6 +119,11 @@ export default function App() {
               element={<EditComment />}
               loader={commentDetailsLoader}
               action={editCommentAction}
+            />
+            <Route
+              path=':commentId/delete'
+              element={<DeleteCommentCheck />}
+              loader={commentDetailsLoader}
             />
           </Route>
         </Route>
