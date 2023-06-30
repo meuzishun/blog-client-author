@@ -13,7 +13,7 @@ export default function CommentDetails() {
       <br />
       <Link to='edit'>Edit</Link>
       <br />
-      <Link to='delete'>Delete Post</Link>
+      <Link to='delete'>Delete Comment</Link>
     </div>
   );
 }

@@ -39,6 +39,7 @@ import { editPostAction } from './actions/editPostAction';
 import { deletePostAction } from './actions/deletePostAction';
 import { newCommentAction } from './actions/newCommentAction';
 import { editCommentAction } from './actions/editCommentAction';
+import { deleteCommentAction } from './actions/deleteCommentAction';
 
 export const UserContext = createContext(null);
 
@@ -124,6 +125,7 @@ export default function App() {
               path=':commentId/delete'
               element={<DeleteCommentCheck />}
               loader={commentDetailsLoader}
+              action={deleteCommentAction}
             />
           </Route>
         </Route>
