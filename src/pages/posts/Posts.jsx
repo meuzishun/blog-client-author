@@ -6,7 +6,7 @@ export default function Posts() {
   return (
     <div>
       {posts.map((post) => (
-        <div key={post.id}>
+        <div key={post._id}>
           <Link to={post._id.toString()}>
             <p>{post.title}</p>
           </Link>

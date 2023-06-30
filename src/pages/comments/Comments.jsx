@@ -6,7 +6,7 @@ export default function Comments() {
   return (
     <div>
       {comments.map((comment) => (
-        <div key={comment.id}>
+        <div key={comment._id}>
           <Link to={comment._id.toString()}>
             <p>
               <span>
