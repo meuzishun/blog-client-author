@@ -18,15 +18,14 @@ export const loginAction = async ({ request }) => {
   });
 
   const json = await response.json();
+  if (!json.user.isAdmin) {
+    return {
+      error: 'only admin allowed',
+    };
+  }
   const userString = JSON.stringify(json.user);
   localStorage.setItem('token', json.jwt.token);
   localStorage.setItem('user', userString);
 
-  if (submission.password.length < 3) {
-    return {
-      error: 'Password must be over 3 chars long',
-    };
-  }
-
-  return redirect('/');
+  return redirect('../');
 };
