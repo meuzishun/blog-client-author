@@ -6,7 +6,10 @@ export default function PostDetails() {
   return (
     <div>
       <h3>Details for post {post._id}</h3>
-      <p>{post.title}</p>
+      <p>
+        {post.title}{' '}
+        <span>{post.isPublished ? 'Published' : 'unpublished'}</span>
+      </p>
       <p>{post.content}</p>
       <br />
       <Link to='edit'>Edit Post</Link>
