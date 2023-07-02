@@ -1,5 +1,3 @@
-const apiRoot = import.meta.env.VITE_API_ROOT;
-import { createContext, useEffect, useState } from 'react';
 import {
   createBrowserRouter,
   createRoutesFromElements,
@@ -8,6 +6,7 @@ import {
 } from 'react-router-dom';
 
 // layouts
+import ProtectedLayout from './layouts/ProtectedLayout';
 import RootLayout from './layouts/RootLayout';
 import PostsLayout from './layouts/PostsLayout';
 import CommentsLayout from './layouts/CommentsLayout';
@@ -27,6 +26,7 @@ import EditComment from './pages/comments/EditComment';
 import DeleteCommentCheck from './pages/comments/DeleteCommentCheck';
 
 // loaders
+import { userLoader } from './loaders/userLoader';
 import { postsLoader } from './loaders/postsLoader';
 import { postDetailsLoader } from './loaders/postDetailsLoader';
 import { commentsLoader } from './loaders/commentsLoader';
@@ -41,102 +41,69 @@ import { newCommentAction } from './actions/newCommentAction';
 import { editCommentAction } from './actions/editCommentAction';
 import { deleteCommentAction } from './actions/deleteCommentAction';
 
-export const UserContext = createContext(null);
-
 export default function App() {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    const getUser = async () => {
-      const token = localStorage.getItem('token');
-
-      if (!token) {
-        setUser(null);
-        localStorage.clear();
-        return;
-      }
-
-      const response = await fetch(apiRoot + '/profile', {
-        method: 'GET',
-        headers: {
-          Authorization: token,
-        },
-      });
-
-      const data = await response.json();
-
-      if (!data.user) {
-        setUser(null);
-        localStorage.clear();
-        return;
-      }
-
-      const userString = JSON.stringify(data.user);
-      localStorage.setItem('user', userString);
-      setUser(data.user);
-    };
-
-    getUser();
-  }, []);
-
   const router = createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayout />}>
-        <Route index element={<Home />} />
-        <Route path='posts' element={<PostsLayout />}>
-          <Route index element={<Posts />} loader={postsLoader} />
-          <Route path='new' element={<CreatePost />} action={newPostAction} />
-          <Route
-            path=':postId'
-            element={<PostDetails />}
-            loader={postDetailsLoader}
-          />
-          <Route
-            path=':postId/edit'
-            element={<EditPost />}
-            loader={postDetailsLoader}
-            action={editPostAction}
-          />
-          <Route
-            path=':postId/delete'
-            element={<DeletePostCheck />}
-            loader={postDetailsLoader}
-            action={deletePostAction}
-          />
-          <Route path=':postId/comments' element={<CommentsLayout />}>
-            <Route index element={<Comments />} loader={commentsLoader} />
-            <Route
-              path='new'
-              element={<CreateComment />}
-              action={newCommentAction}
-            />
-            <Route
-              path=':commentId'
-              element={<CommentDetails />}
-              loader={commentDetailsLoader}
-            />
-            <Route
-              path=':commentId/edit'
-              element={<EditComment />}
-              loader={commentDetailsLoader}
-              action={editCommentAction}
-            />
-            <Route
-              path=':commentId/delete'
-              element={<DeleteCommentCheck />}
-              loader={commentDetailsLoader}
-              action={deleteCommentAction}
-            />
+      <>
+        <Route element={<ProtectedLayout />} loader={userLoader}>
+          <Route path='/' element={<RootLayout />}>
+            <Route index element={<Home />} />
+            <Route path='posts' element={<PostsLayout />}>
+              <Route index element={<Posts />} loader={postsLoader} />
+              <Route
+                path='new'
+                element={<CreatePost />}
+                action={newPostAction}
+              />
+              <Route
+                path=':postId'
+                element={<PostDetails />}
+                loader={postDetailsLoader}
+              />
+              <Route
+                path=':postId/edit'
+                element={<EditPost />}
+                loader={postDetailsLoader}
+                action={editPostAction}
+              />
+              <Route
+                path=':postId/delete'
+                element={<DeletePostCheck />}
+                loader={postDetailsLoader}
+                action={deletePostAction}
+              />
+              <Route path=':postId/comments' element={<CommentsLayout />}>
+                <Route index element={<Comments />} loader={commentsLoader} />
+                <Route
+                  path='new'
+                  element={<CreateComment />}
+                  action={newCommentAction}
+                />
+                <Route
+                  path=':commentId'
+                  element={<CommentDetails />}
+                  loader={commentDetailsLoader}
+                />
+                <Route
+                  path=':commentId/edit'
+                  element={<EditComment />}
+                  loader={commentDetailsLoader}
+                  action={editCommentAction}
+                />
+                <Route
+                  path=':commentId/delete'
+                  element={<DeleteCommentCheck />}
+                  loader={commentDetailsLoader}
+                  action={deleteCommentAction}
+                />
+              </Route>
+            </Route>
           </Route>
         </Route>
         <Route path='login' element={<Login />} action={loginAction} />
-      </Route>
+      </>
     )
   );
 
-  return (
-    <UserContext.Provider value={{ user, setUser }}>
-      <RouterProvider router={router} />
-    </UserContext.Provider>
-  );
+  return <RouterProvider router={router} />;
 }
