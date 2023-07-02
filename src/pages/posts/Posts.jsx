@@ -8,7 +8,10 @@ export default function Posts() {
       {posts.map((post) => (
         <div key={post._id}>
           <Link to={post._id.toString()}>
-            <p>{post.title}</p>
+            <p>
+              {post.title}{' '}
+              <span>({post.isPublished ? 'Published' : 'unpublished'})</span>
+            </p>
           </Link>
           <br />
         </div>
