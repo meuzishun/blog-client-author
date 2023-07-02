@@ -18,6 +18,12 @@ export const loginAction = async ({ request }) => {
   });
 
   const json = await response.json();
+
+  if (!response.ok) {
+    const errorMsg = json.message.errors[0].msg;
+    return { error: errorMsg };
+  }
+
   if (!json.user.isAdmin) {
     return {
       error: 'only admin allowed',
