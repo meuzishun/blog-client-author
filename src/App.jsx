@@ -16,15 +16,19 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import NotFound from './pages/NotFound';
 import Posts from './pages/posts/Posts';
+import PostsError from './pages/posts/PostsError';
 import CreatePost from './pages/posts/CreatePost';
 import PostDetails from './pages/posts/PostDetails';
 import EditPost from './pages/posts/EditPost';
 import DeletePostCheck from './pages/posts/DeletePostCheck';
+import PostError from './pages/posts/PostError';
 import Comments from './pages/comments/Comments';
+import CommentsError from './pages/comments/CommentsError';
 import CreateComment from './pages/comments/CreateComment';
 import CommentDetails from './pages/comments/CommentDetails';
 import EditComment from './pages/comments/EditComment';
 import DeleteCommentCheck from './pages/comments/DeleteCommentCheck';
+import CommentError from './pages/comments/CommentError';
 
 // loaders
 import { userLoader } from './loaders/userLoader';
@@ -50,7 +54,12 @@ export default function App() {
           <Route path='/' element={<RootLayout />}>
             <Route index element={<Home />} />
             <Route path='posts' element={<PostsLayout />}>
-              <Route index element={<Posts />} loader={postsLoader} />
+              <Route
+                index
+                element={<Posts />}
+                loader={postsLoader}
+                errorElement={<PostsError />}
+              />
               <Route
                 path='new'
                 element={<CreatePost />}
@@ -60,6 +69,7 @@ export default function App() {
                 path=':postId'
                 element={<PostDetails />}
                 loader={postDetailsLoader}
+                errorElement={<PostError />}
               />
               <Route
                 path=':postId/edit'
@@ -74,7 +84,12 @@ export default function App() {
                 action={deletePostAction}
               />
               <Route path=':postId/comments' element={<CommentsLayout />}>
-                <Route index element={<Comments />} loader={commentsLoader} />
+                <Route
+                  index
+                  element={<Comments />}
+                  loader={commentsLoader}
+                  errorElement={<CommentsError />}
+                />
                 <Route
                   path='new'
                   element={<CreateComment />}
@@ -84,6 +99,7 @@ export default function App() {
                   path=':commentId'
                   element={<CommentDetails />}
                   loader={commentDetailsLoader}
+                  errorElement={<CommentError />}
                 />
                 <Route
                   path=':commentId/edit'
