@@ -5,6 +5,9 @@ export default function Login() {
 
   return (
     <div>
+      <header>
+        <h1>You&apos;re Gonna Make Me Blog</h1>
+      </header>
       <h3>Login</h3>
       <Form method='post' action='/login'>
         <div>
