@@ -8,14 +8,15 @@ export default function Comments() {
       {comments.map((comment) => (
         <div key={comment._id}>
           <Link to={comment._id.toString()}>
-            <p>
-              <span>
-                {comment.author.firstName} {comment.author.lastName}
-              </span>
-              - {comment.content}
-            </p>
+            {comment.author.firstName} {comment.author.lastName}
+            {' - '}
+            {comment.content}
           </Link>
-          <br />
+          {' | '}
+          <Link to={comment._id + '/edit'}>Edit</Link>
+          {' | '}
+          <Link to={comment._id + '/delete'}>Delete</Link>
+          <hr />
         </div>
       ))}
       <Link to='new'>Create Comment</Link>
