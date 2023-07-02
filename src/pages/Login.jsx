@@ -21,7 +21,7 @@ export default function Login() {
       <header>
         <h1>You&apos;re Gonna Make Me Blog</h1>
       </header>
-      <h3>Login</h3>
+      <h3>Admin Login</h3>
       <Form method='post' action='/login'>
         <div>
           <label>Email</label>
