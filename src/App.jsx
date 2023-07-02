@@ -14,6 +14,7 @@ import CommentsLayout from './layouts/CommentsLayout';
 // pages
 import Home from './pages/Home';
 import Login from './pages/Login';
+import NotFound from './pages/NotFound';
 import Posts from './pages/posts/Posts';
 import CreatePost from './pages/posts/CreatePost';
 import PostDetails from './pages/posts/PostDetails';
@@ -101,6 +102,7 @@ export default function App() {
           </Route>
         </Route>
         <Route path='login' element={<Login />} action={loginAction} />
+        <Route path='*' element={<NotFound />} />
       </>
     )
   );
