@@ -26,7 +26,6 @@ export default function Header() {
           Logout
         </button>
       </nav>
-      {/* <hr /> */}
     </header>
   );
 }
