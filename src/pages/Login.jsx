@@ -18,14 +18,15 @@ export default function Login() {
 
   return (
     <div>
-      <header>
-        <h1>You&apos;re Gonna Make Me Blog</h1>
+      <header className='navbar-primary justify-between text-white'>
+        <h1 className='font-lg'>You&apos;re Gonna Make Me Blog</h1>
       </header>
-      <h3>Admin Login</h3>
-      <Form method='post' action='/login'>
-        <div>
-          <label>Email</label>
+      <Form className='form' method='post' action='/login'>
+        <h3 className='mt-3 font-lg text-primary'>Admin Login</h3>
+        <div className='input-container'>
+          <label className='mt-2'>Email</label>
           <input
+            className='font-md p-1'
             ref={emailInput}
             type='email'
             name='email'
@@ -33,9 +34,10 @@ export default function Login() {
             required
           />
         </div>
-        <div>
-          <label>Password</label>
+        <div className='input-container'>
+          <label className='mt-2'>Password</label>
           <input
+            className='font-md p-1'
             ref={passwordInput}
             type='password'
             name='password'
@@ -43,7 +45,9 @@ export default function Login() {
             required
           />
         </div>
-        <button type='submit'>Submit</button>
+        <button className='mt-3 btn-primary font-md text-white' type='submit'>
+          Submit
+        </button>
         {data && data.error && <p>{data.error}</p>}
       </Form>
     </div>

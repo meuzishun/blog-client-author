@@ -1,0 +1,19 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 0 auto;
+
+  .input-container {
+    display: flex;
+    flex-direction: column;
+
+    input:hover {
+      outline-color: $primary;
+    }
+  }
+
+  button {
+    align-self: center;
+  }
+}
