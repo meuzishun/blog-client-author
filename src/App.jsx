@@ -14,7 +14,7 @@ import CommentsLayout from './layouts/CommentsLayout';
 // pages
 import Home from './pages/Home';
 import Login from './pages/Login';
-import NotFound from './pages/NotFound';
+import LoginError from './pages/LoginError';
 import Posts from './pages/posts/Posts';
 import PostsError from './pages/posts/PostsError';
 import CreatePost from './pages/posts/CreatePost';
@@ -29,6 +29,7 @@ import CommentDetails from './pages/comments/CommentDetails';
 import EditComment from './pages/comments/EditComment';
 import DeleteCommentCheck from './pages/comments/DeleteCommentCheck';
 import CommentError from './pages/comments/CommentError';
+import NotFound from './pages/NotFound';
 
 // loaders
 import { userLoader } from './loaders/userLoader';
@@ -117,7 +118,12 @@ export default function App() {
             </Route>
           </Route>
         </Route>
-        <Route path='login' element={<Login />} action={loginAction} />
+        <Route
+          path='login'
+          element={<Login />}
+          action={loginAction}
+          errorElement={<LoginError />}
+        />
         <Route path='*' element={<NotFound />} />
       </>
     )

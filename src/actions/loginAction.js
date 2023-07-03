@@ -20,8 +20,7 @@ export const loginAction = async ({ request }) => {
   const json = await response.json();
 
   if (!response.ok) {
-    const errorMsg = json.message.errors[0].msg;
-    return { error: errorMsg };
+    return { error: json.message };
   }
 
   if (!json.user.isAdmin) {
