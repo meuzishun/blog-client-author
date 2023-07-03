@@ -4,21 +4,15 @@ import { useLoaderData, Link } from 'react-router-dom';
 export default function Posts() {
   const { posts } = useLoaderData();
 
-  const togglePublication = async (e) => {
-    // TODO: There has to be a better way to get this data
-    const postId = e.target.parentElement.firstChild.href.split('/').at(-1);
-    console.log(postId);
-    const postPublished = e.target.textContent === 'Unpublish';
-    console.log(postPublished);
-
-    const response = await fetch(apiRoot + '/posts/' + postId, {
+  const togglePublication = async (post) => {
+    const response = await fetch(apiRoot + '/posts/' + post._id, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: localStorage.getItem('token'),
       },
       body: JSON.stringify({
-        isPublished: !postPublished,
+        isPublished: !post.isPublished,
       }),
     });
 
@@ -37,7 +31,11 @@ export default function Posts() {
           {' | '}
           <Link to={post._id.toString() + '/delete'}>Delete</Link>
           {' | '}
-          <button onClick={togglePublication}>
+          <button
+            onClick={() => {
+              togglePublication(post);
+            }}
+          >
             {post.isPublished ? 'Unpublish' : 'Publish'}
           </button>
           <hr />
