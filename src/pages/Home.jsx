@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Home() {
   return (
-    <div>
+    <div className='test white-text'>
       <h2>Homepage</h2>
       <br />
       <Link to='posts'>View Posts</Link>
