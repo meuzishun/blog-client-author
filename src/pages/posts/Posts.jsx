@@ -32,7 +32,10 @@ export default function Posts() {
             className='row pt-1 pb-1 display-f justify-space-between'
             key={post._id}
           >
-            <Link className='font-lg' to={post._id.toString()}>
+            <Link
+              className='font-lg text-hover-primary'
+              to={post._id.toString()}
+            >
               {post.title}
             </Link>
             <div>
