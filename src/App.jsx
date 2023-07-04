@@ -84,7 +84,11 @@ export default function App() {
                 loader={postDetailsLoader}
                 action={deletePostAction}
               />
-              <Route path=':postId/comments' element={<CommentsLayout />}>
+              <Route
+                path=':postId/comments'
+                element={<CommentsLayout />}
+                loader={postDetailsLoader}
+              >
                 <Route
                   index
                   element={<Comments />}
