@@ -31,7 +31,7 @@ export default function Comments() {
           </div>
         </div>
       ))}
-      <div className='row justify-center mt-3'>
+      <div className='row justify-center mt-3 mb-3'>
         <Link className='btn-secondary font-md text-white' to='new'>
           Create Comment
         </Link>
