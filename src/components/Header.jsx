@@ -19,7 +19,7 @@ export default function Header() {
           New Post
         </Link>
         <button
-          className='nav-btn font-md text-white ml-1 mr-1 text-hover-secondary'
+          className='nav-btn font-md text-white mt-1 mb-1 text-hover-secondary'
           onClick={() => {
             localStorage.clear();
             navigate('/login');
