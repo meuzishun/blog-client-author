@@ -42,7 +42,7 @@ export default function CreatePost() {
           </label>
           <input name='publish' id='publish' type='checkbox' />
         </div>
-        <div className='container display-f justify-center mt-3'>
+        <div className='container display-f justify-center mt-3 mb-3'>
           <button
             className='btn-primary font-md text-white ml-1 mr-1'
             type='submit'
