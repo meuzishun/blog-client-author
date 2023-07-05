@@ -25,7 +25,7 @@ export const loginAction = async ({ request }) => {
 
   if (!json.user.isAdmin) {
     return {
-      error: 'only admin allowed',
+      error: 'Only admin allowed',
     };
   }
   const userString = JSON.stringify(json.user);

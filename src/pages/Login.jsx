@@ -48,7 +48,11 @@ export default function Login() {
         <button className='mt-3 btn-primary font-md text-white' type='submit'>
           Submit
         </button>
-        {data && data.error && <p>{data.error}</p>}
+        {data && data.error && (
+          <p className='display-f justify-center mt-3 font-md text-red-dark-3'>
+            {data.error}
+          </p>
+        )}
       </Form>
     </div>
   );
