@@ -6,16 +6,19 @@ export default function Comments() {
   return (
     <div className='container'>
       {comments.map((comment) => (
-        <div className='justify-space-between mt-2 mb-2' key={comment._id}>
+        <div
+          className='row justify-space-between mt-2 mb-2 bg-secondary-light-9 p-1 br-xs'
+          key={comment._id}
+        >
           <Link
-            className='text-hover-primary row col-12-sm'
+            className='text-hover-primary col-6-md'
             to={comment._id.toString()}
           >
             {comment.author.firstName} {comment.author.lastName}
             {' - '}
             {comment.content}
           </Link>
-          <div className='row col-12-sm'>
+          <div className='col-4-md row justify-flex-end'>
             <Link
               className='btn-outlined-primary text-primary text-hover-white pt-0 pb-0 pl-1 pr-1 ml-1 mr-1'
               to={comment._id + '/edit'}
