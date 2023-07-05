@@ -9,17 +9,17 @@ export default function Header() {
         You&apos;re Gonna Make Me Blog
       </h1>
       <nav className='col-3-xl col-4-lg col-5-md col-12-sm col-12-xs display-f justify-space-around'>
-        <Link className='mt-1 mb-1 text-hover-secondary' to='/'>
+        <Link className='mt-1 mb-1 text-hover-secondary-light-7' to='/'>
           Home
         </Link>
-        <Link className='mt-1 mb-1 text-hover-secondary' to='posts'>
+        <Link className='mt-1 mb-1 text-hover-secondary-light-7' to='posts'>
           Posts
         </Link>
-        <Link className='mt-1 mb-1 text-hover-secondary' to='posts/new'>
+        <Link className='mt-1 mb-1 text-hover-secondary-light-7' to='posts/new'>
           New Post
         </Link>
         <button
-          className='nav-btn font-md text-white mt-1 mb-1 text-hover-secondary'
+          className='nav-btn font-md text-white mt-1 mb-1 text-hover-secondary-light-7'
           onClick={() => {
             localStorage.clear();
             navigate('/login');

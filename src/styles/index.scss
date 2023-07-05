@@ -5,19 +5,13 @@
 // .white-text {
 //   color: white;
 // }
-.btn {
-  font-family: Poppins;
-}
-
-.navbar {
-  // flex-wrap: wrap;
-}
 
 .nav-btn {
   background-color: transparent;
   border: none;
   padding: 0;
   font-family: Poppins;
+  cursor: pointer;
 }
 
 @import 'lib';
