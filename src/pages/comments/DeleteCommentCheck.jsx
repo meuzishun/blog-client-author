@@ -7,13 +7,25 @@ export default function DeleteCommentCheck() {
 
   return (
     <div>
-      <h3>Are you sure you want to delete comment {comment._id}?</h3>
+      <h3 className='row justify-center mt-3 ml-1 mr-1 font-lg text-primary'>
+        Are you sure you want to delete this comment?
+      </h3>
+      <p className='row justify-center mt-1 ml-1 mr-1 font-md text-primary'>
+        &quot;{comment.content}&quot;
+      </p>
       <Form
+        className='display-f justify-center mt-3 mb-3'
         method='post'
         action={'/posts/' + postId + '/comments/' + commentId + '/delete'}
       >
-        <button type='submit'>Delete</button>
         <button
+          className='btn-outlined-red text-red text-hover-white font-md ml-1 mr-1'
+          type='submit'
+        >
+          Delete
+        </button>
+        <button
+          className='btn-outlined-gray text-gray text-hover-white font-md ml-1 mr-1'
           type='button'
           onClick={() => {
             navigate(-1);
