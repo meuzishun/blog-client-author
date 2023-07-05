@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 export default function Home() {
   return (
     <div>
-      <h2 className='mt-5 mb-3 pl-2 pr-2 display-f justify-center text-primary font-xl'>
+      <h2 className='mt-3 mb-2 pl-2 pr-2 display-f justify-center text-primary font-xl'>
         Welcome to You&apos;re Gonna Make Me Blog
       </h2>
       <div className='display-f justify-center wrap'>
