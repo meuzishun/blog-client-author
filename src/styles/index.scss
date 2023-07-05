@@ -15,3 +15,25 @@
 }
 
 @import 'lib';
+
+.checkbox-container {
+  label {
+    @extend .btn-outlined-gray;
+    @extend .text-gray;
+    @extend .text-hover-white;
+    &::before {
+      content: "Don't ";
+    }
+    padding: 0 1rem;
+  }
+
+  input:checked + label {
+    @extend .btn-outlined-secondary;
+    @extend .text-secondary;
+    @extend .text-hover-white;
+    &::before {
+      content: '';
+    }
+    padding: 0 1rem;
+  }
+}
