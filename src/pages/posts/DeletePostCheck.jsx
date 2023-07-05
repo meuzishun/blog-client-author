@@ -7,10 +7,22 @@ export default function DeletePostCheck() {
 
   return (
     <div>
-      <h3>Are you sure you want to delete post {post.id}?</h3>
-      <Form method='post' action={'/posts/' + postId + '/delete'}>
-        <button type='submit'>Delete</button>
+      <h3 className='row justify-center mt-3 ml-1 mr-1 font-lg text-primary'>
+        Are you sure you want to delete the post &quot;{post.title}&quot;?
+      </h3>
+      <Form
+        className='display-f justify-center mt-3'
+        method='post'
+        action={'/posts/' + postId + '/delete'}
+      >
         <button
+          className='btn-outlined-red text-red text-hover-white font-md ml-1 mr-1'
+          type='submit'
+        >
+          Delete
+        </button>
+        <button
+          className='btn-outlined-gray text-gray text-hover-white font-md ml-1 mr-1'
           type='button'
           onClick={() => {
             navigate(-1);
