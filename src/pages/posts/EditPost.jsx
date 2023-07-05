@@ -6,29 +6,38 @@ export default function EditPost() {
   const navigate = useNavigate();
 
   return (
-    <div>
-      <h3>Edit post with ID: {post.id}</h3>
-      <Form method='post' action={'/posts/' + postId + '/edit'}>
-        <div>
-          <label>Title</label>
+    <div className='container'>
+      <h3 className='row justify-center mt-3 font-lg text-primary'>
+        Edit post
+      </h3>
+      <Form
+        className='row justify-center'
+        method='post'
+        action={'/posts/' + postId + '/edit'}
+      >
+        <div className='col-12-xs col-9-md col-7-lg'>
+          <label className='row mt-2'>Title</label>
           <input
+            className='row container font-md p-1'
             defaultValue={post.title}
             name='title'
             id='title'
             required
           ></input>
         </div>
-        <div>
-          <label>Content</label>
+        <div className='col-12-xs col-9-md col-7-lg'>
+          <label className='row mt-2'>Content</label>
           <textarea
+            className='row container font-md p-1'
             defaultValue={post.content}
             name='content'
             id='content'
+            rows='10'
             required
           ></textarea>
         </div>
-        <div>
-          <label>Publish</label>
+        <div className='col-12-xs col-9-md col-7-lg'>
+          <label className='row mt-2'>Publish</label>
           <input
             defaultChecked={post.isPublished}
             name='publish'
@@ -36,15 +45,23 @@ export default function EditPost() {
             type='checkbox'
           />
         </div>
-        <button type='submit'>Submit</button>
-        <button
-          type='button'
-          onClick={() => {
-            navigate(-1);
-          }}
-        >
-          Cancel
-        </button>
+        <div className='container display-f justify-center mt-3 mb-3'>
+          <button
+            className='btn-primary font-md text-white ml-1 mr-1'
+            type='submit'
+          >
+            Submit
+          </button>
+          <button
+            className='btn-gray font-md text-white ml-1 mr-1'
+            type='button'
+            onClick={() => {
+              navigate(-1);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </Form>
     </div>
   );
