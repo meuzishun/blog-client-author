@@ -130,7 +130,8 @@ export default function App() {
         />
         <Route path='*' element={<NotFound />} />
       </>
-    )
+    ),
+    { basename: '/blog-client-author' }
   );
 
   return <RouterProvider router={router} />;
