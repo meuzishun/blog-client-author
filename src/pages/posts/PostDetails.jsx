@@ -1,4 +1,4 @@
-const apiRoot = import.meta.env.VITE_API_ROOT;
+const apiRoot = 'https://scary-train-deer.cyclic.app/';
 import { useLoaderData, Link } from 'react-router-dom';
 
 export default function PostDetails() {

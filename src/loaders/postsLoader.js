@@ -1,4 +1,4 @@
-const apiRoot = import.meta.env.VITE_API_ROOT;
+const apiRoot = 'https://scary-train-deer.cyclic.app/';
 
 export const postsLoader = async () => {
   const res = await fetch(apiRoot + '/posts', {
