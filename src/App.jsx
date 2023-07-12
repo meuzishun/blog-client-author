@@ -41,6 +41,7 @@ import { commentDetailsLoader } from './loaders/commentDetailsLoader';
 // actions
 import { loginAction } from './actions/loginAction';
 import { newPostAction } from './actions/newPostAction';
+import { togglePublication } from './actions/togglePublishAction';
 import { editPostAction } from './actions/editPostAction';
 import { deletePostAction } from './actions/deletePostAction';
 import { newCommentAction } from './actions/newCommentAction';
@@ -59,6 +60,7 @@ export default function App() {
                 index
                 element={<Posts />}
                 loader={postsLoader}
+                action={togglePublication}
                 errorElement={<PostsError />}
               />
               <Route
@@ -70,6 +72,7 @@ export default function App() {
                 path=':postId'
                 element={<PostDetails />}
                 loader={postDetailsLoader}
+                action={togglePublication}
                 errorElement={<PostError />}
               />
               <Route

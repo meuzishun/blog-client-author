@@ -1,25 +1,13 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
-import { useLoaderData, Link } from 'react-router-dom';
+import { useLoaderData, Link, useFetcher } from 'react-router-dom';
 
 export default function PostDetails() {
   const { post } = useLoaderData();
+  const fetcher = useFetcher();
 
-  const togglePublication = async (post) => {
-    const response = await fetch(apiRoot + '/posts/' + post._id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        isPublished: !post.isPublished,
-      }),
-    });
-
-    if (response.ok) {
-      window.location.reload(false);
-    }
-  };
+  let isPublished = post.isPublished;
+  if (fetcher.formData && fetcher.formData.get('post-id') === post._id) {
+    isPublished = fetcher.formData.get('isPublished') === 'true';
+  }
 
   return (
     <div className='container'>
@@ -46,14 +34,16 @@ export default function PostDetails() {
         >
           Delete Post
         </Link>
-        <button
-          className='btn-outlined-secondary text-secondary text-hover-white font-md ml-1 mr-1'
-          onClick={() => {
-            togglePublication(post);
-          }}
-        >
-          {post.isPublished ? 'Unpublish' : 'Publish'} Post
-        </button>
+        <fetcher.Form method='post'>
+          <input name='post-id' hidden defaultValue={post._id} />
+          <button
+            className='btn-outlined-secondary text-secondary text-hover-white font-md ml-1 mr-1'
+            name='isPublished'
+            value={isPublished ? 'false' : 'true'}
+          >
+            {isPublished ? 'Unpublish' : 'Publish'} Post
+          </button>
+        </fetcher.Form>
       </div>
     </div>
   );
