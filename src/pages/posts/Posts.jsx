@@ -1,25 +1,26 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
-import { useLoaderData, Link } from 'react-router-dom';
+// const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { useLoaderData, Link, useFetcher } from 'react-router-dom';
 
 export default function Posts() {
   const { posts } = useLoaderData();
+  const fetcher = useFetcher();
 
-  const togglePublication = async (post) => {
-    const response = await fetch(apiRoot + '/posts/' + post._id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: localStorage.getItem('token'),
-      },
-      body: JSON.stringify({
-        isPublished: !post.isPublished,
-      }),
-    });
+  // const togglePublication = async (post) => {
+  //   const response = await fetch(apiRoot + '/posts/' + post._id, {
+  //     method: 'PUT',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: localStorage.getItem('token'),
+  //     },
+  //     body: JSON.stringify({
+  //       isPublished: !post.isPublished,
+  //     }),
+  //   });
 
-    if (response.ok) {
-      window.location.reload(false);
-    }
-  };
+  //   if (response.ok) {
+  //     window.location.reload(false);
+  //   }
+  // };
 
   return (
     <div>
@@ -51,14 +52,16 @@ export default function Posts() {
               >
                 Delete
               </Link>
-              <button
-                className='btn-outlined-secondary ml-1 mr-1 mb-1 pr-1 pl-1 pt-0 pb-0 font-md text-secondary text-hover-white pub-btn'
-                onClick={() => {
-                  togglePublication(post);
-                }}
-              >
-                {post.isPublished ? 'Unpublish' : 'Publish'}
-              </button>
+              <fetcher.Form method='post'>
+                <input name='post-id' hidden defaultValue={post._id} />
+                <button
+                  className='btn-outlined-secondary ml-1 mr-1 mb-1 pr-1 pl-1 pt-0 pb-0 font-md text-secondary text-hover-white pub-btn'
+                  name='isPublished'
+                  value={post.isPublished ? 'false' : 'true'}
+                >
+                  {post.isPublished ? 'Unpublish' : 'Publish'}
+                </button>
+              </fetcher.Form>
             </div>
           </div>
         ))}
