@@ -1,26 +1,26 @@
+import { useState } from 'react';
 import { useLoaderData, Link, useFetcher } from 'react-router-dom';
+import Comments from '../comments/Comments';
 
 export default function PostDetails() {
   const { post } = useLoaderData();
   const fetcher = useFetcher();
+  const [showComments, setShowComments] = useState(false);
 
   let isPublished = post.isPublished;
   if (fetcher.formData && fetcher.formData.get('post-id') === post._id) {
     isPublished = fetcher.formData.get('isPublished') === 'true';
   }
 
+  const handleCommentsBtnClick = () => {
+    setShowComments(!showComments);
+  };
+
   return (
     <div className='container'>
       <h3 className='row mt-3 mb-2 text-primary font-xl'>{post.title} </h3>
       <p className='row mb-3 font-md'>{post.content}</p>
-      <div className='display-f justify-center mb-3'>
-        <Link
-          className='btn-outlined-primary text-primary text-hover-white ml-1 mr-1'
-          to='comments'
-        >
-          View Comments
-        </Link>
-      </div>
+
       <div className='display-f justify-center mb-4'>
         <Link
           className='btn-outlined-primary text-primary text-hover-white ml-1 mr-1'
@@ -34,7 +34,8 @@ export default function PostDetails() {
         >
           Delete Post
         </Link>
-        <fetcher.Form method='post'>
+        <fetcher.Form method='post' action={`/posts/${post._id}`}>
+          <input name='form-id' hidden defaultValue='publish' />
           <input name='post-id' hidden defaultValue={post._id} />
           <button
             className='btn-outlined-secondary text-secondary text-hover-white font-md ml-1 mr-1'
@@ -45,6 +46,16 @@ export default function PostDetails() {
           </button>
         </fetcher.Form>
       </div>
+      <div className='display-f justify-center mb-3'>
+        <button
+          className='btn-outlined-primary text-primary text-hover-white font-md ml-1 mr-1'
+          onClick={handleCommentsBtnClick}
+        >
+          {!showComments ? 'View' : 'Hide'} Comments
+        </button>
+      </div>
+      {showComments ? <Comments /> : null}
+      {/* <Outlet /> */}
     </div>
   );
 }
