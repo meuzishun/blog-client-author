@@ -1,8 +1,9 @@
 import { useRef, useEffect } from 'react';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, useNavigation } from 'react-router-dom';
 
 export default function Login() {
   const data = useActionData();
+  const navigation = useNavigation();
   const emailInput = useRef(null);
   const passwordInput = useRef(null);
 
@@ -17,7 +18,7 @@ export default function Login() {
   });
 
   return (
-    <div>
+    <div className={navigation.state !== 'idle' ? 'loading' : ''}>
       <header className='navbar-primary justify-between text-white'>
         <h1 className='font-lg'>You&apos;re Gonna Make Me Blog</h1>
       </header>

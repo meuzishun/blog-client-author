@@ -37,3 +37,8 @@
     padding: 0 1rem;
   }
 }
+
+.loading {
+  opacity: 0;
+  transition: opacity 500ms;
+}

@@ -1,6 +1,17 @@
-import { useLoaderData, Outlet, Navigate } from 'react-router-dom';
+import {
+  useLoaderData,
+  useNavigation,
+  Outlet,
+  Navigate,
+} from 'react-router-dom';
 
 export default function PrivateRoutes() {
   const user = useLoaderData();
-  return !user ? <Navigate to='login' /> : <Outlet />;
+  const navigation = useNavigation();
+
+  return (
+    <div className={navigation.state !== 'idle' ? 'loading' : ''}>
+      {!user ? <Navigate to='login' /> : <Outlet />}
+    </div>
+  );
 }
