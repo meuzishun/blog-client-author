@@ -15,10 +15,12 @@ export default function PostDetails() {
   const handleCommentsBtnClick = () => {
     if (showComments) {
       const header = document.getElementsByTagName('header')[0];
+
       const timer = setTimeout(() => {
         setShowComments(!showComments);
         clearTimeout(timer);
       }, 1000);
+
       header.scrollIntoView();
     } else {
       setShowComments(!showComments);
@@ -64,7 +66,6 @@ export default function PostDetails() {
         </button>
       </div>
       {showComments ? <Comments /> : null}
-      {/* <Outlet /> */}
     </div>
   );
 }
