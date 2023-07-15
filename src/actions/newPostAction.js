@@ -1,4 +1,4 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { API_URI } from '../api_uri';
 import { redirect } from 'react-router-dom';
 
 export const newPostAction = async ({ request }) => {
@@ -10,7 +10,7 @@ export const newPostAction = async ({ request }) => {
     isPublished: data.get('publish') === 'on',
   };
 
-  await fetch(apiRoot + '/posts', {
+  await fetch(API_URI + '/posts', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

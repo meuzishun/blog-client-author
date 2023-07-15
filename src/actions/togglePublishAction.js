@@ -1,11 +1,11 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { API_URI } from '../api_uri';
 
 export const togglePublication = async ({ request }) => {
   const formData = await request.formData();
   const postId = formData.get('post-id');
   const isPublished = formData.get('isPublished');
 
-  const response = await fetch(apiRoot + '/posts/' + postId, {
+  const response = await fetch(API_URI + '/posts/' + postId, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',

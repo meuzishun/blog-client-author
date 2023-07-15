@@ -1,4 +1,4 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { API_URI } from '../api_uri';
 import { redirect } from 'react-router-dom';
 
 export const editCommentAction = async ({ request, params }) => {
@@ -9,7 +9,7 @@ export const editCommentAction = async ({ request, params }) => {
     content: data.get('content'),
   };
 
-  await fetch(apiRoot + '/posts/' + postId + '/comments/' + commentId, {
+  await fetch(API_URI + '/posts/' + postId + '/comments/' + commentId, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json',
@@ -18,5 +18,5 @@ export const editCommentAction = async ({ request, params }) => {
     body: JSON.stringify(submission),
   });
 
-  return redirect('/posts/' + postId + '/comments');
+  return redirect('/posts/' + postId);
 };

@@ -1,10 +1,10 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { API_URI } from '../api_uri';
 import { redirect } from 'react-router-dom';
 
 export const deleteCommentAction = async ({ params }) => {
   const { postId, commentId } = params;
 
-  await fetch(apiRoot + '/posts/' + postId + '/comments/' + commentId, {
+  await fetch(API_URI + '/posts/' + postId + '/comments/' + commentId, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json',
@@ -12,5 +12,5 @@ export const deleteCommentAction = async ({ params }) => {
     },
   });
 
-  return redirect('/posts/' + postId + '/comments');
+  return redirect('/posts/' + postId);
 };

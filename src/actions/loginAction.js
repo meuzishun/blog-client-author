@@ -1,4 +1,4 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { API_URI } from '../api_uri';
 import { redirect } from 'react-router-dom';
 
 export const loginAction = async ({ request }) => {
@@ -9,7 +9,7 @@ export const loginAction = async ({ request }) => {
     password: data.get('password'),
   };
 
-  const response = await fetch(apiRoot + '/login', {
+  const response = await fetch(API_URI + '/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
