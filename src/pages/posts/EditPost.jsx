@@ -36,14 +36,17 @@ export default function EditPost() {
             required
           ></textarea>
         </div>
-        <div className='col-12-xs col-9-md col-7-lg'>
-          <label className='row mt-2'>Publish</label>
+        <div className='checkbox-container col-12-xs col-9-md col-7-lg justify-center mt-2'>
           <input
             defaultChecked={post.isPublished}
+            className='display-n'
             name='publish'
             id='publish'
             type='checkbox'
           />
+          <label className='ml-1 font-md' htmlFor='publish'>
+            Publish
+          </label>
         </div>
         <div className='container display-f justify-center mt-3 mb-3'>
           <button
