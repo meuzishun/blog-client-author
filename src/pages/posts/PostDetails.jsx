@@ -13,7 +13,16 @@ export default function PostDetails() {
   }
 
   const handleCommentsBtnClick = () => {
-    setShowComments(!showComments);
+    if (showComments) {
+      const header = document.getElementsByTagName('header')[0];
+      const timer = setTimeout(() => {
+        setShowComments(!showComments);
+        clearTimeout(timer);
+      }, 1000);
+      header.scrollIntoView();
+    } else {
+      setShowComments(!showComments);
+    }
   };
 
   return (
@@ -46,7 +55,7 @@ export default function PostDetails() {
           </button>
         </fetcher.Form>
       </div>
-      <div className='display-f justify-center mb-3'>
+      <div id='comments-start' className='display-f justify-center mb-3'>
         <button
           className='btn-outlined-primary text-primary text-hover-white font-md ml-1 mr-1'
           onClick={handleCommentsBtnClick}

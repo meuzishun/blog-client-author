@@ -37,6 +37,13 @@ export default function Comments() {
     getComments();
   }, []);
 
+  useEffect(() => {
+    if (comments.length > 0) {
+      const commentsStart = document.getElementById('comments-start');
+      commentsStart.scrollIntoView();
+    }
+  }, [comments]);
+
   return (
     <div className='container'>
       {showNewCommentForm ? (
