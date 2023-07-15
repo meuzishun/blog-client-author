@@ -15,6 +15,11 @@ export const userLoader = async () => {
     },
   });
 
+  if (!response.ok) {
+    localStorage.clear();
+    return false;
+  }
+
   const data = await response.json();
 
   if (!data.user || !data.user.isAdmin) {
