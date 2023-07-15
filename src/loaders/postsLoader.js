@@ -1,7 +1,7 @@
-const apiRoot = 'https://scary-train-deer.cyclic.app/';
+import { API_URI } from '../api_uri';
 
 export const postsLoader = async () => {
-  const res = await fetch(apiRoot + '/posts', {
+  const res = await fetch(API_URI + '/posts', {
     headers: {
       Authorization: localStorage.getItem('token'),
     },
