@@ -13,7 +13,7 @@ export default function Comments() {
   };
 
   const getComments = async () => {
-    const res = await fetch(`${API_URI}posts/${postId}/comments`, {
+    const res = await fetch(`${API_URI}/posts/${postId}/comments`, {
       headers: {
         Authorization: localStorage.getItem('token'),
       },
